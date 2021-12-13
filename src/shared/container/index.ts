@@ -5,5 +5,5 @@ import { AssetsRepository } from "../../modules/assets/repositories/implementati
 
 container.registerSingleton<IAssetsRepository>(
   "AssetsRepository",
-  AssetsRepository
+  AssetsRepository,
 );
