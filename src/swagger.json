@@ -1,0 +1,247 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "manussets doc",
+    "description": "Api of manussets",
+    "version": "1.0.0",
+    "contact": {
+      "email": "rodrigovictor81@gmail.com"
+    }
+  },
+  "paths": {
+    "/assets/list": {
+      "get": {
+        "tags": [
+          "Asset"
+        ],
+        "summary": "List all assets",
+        "description": "List all assets",
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": "string",
+                    "image": "string",
+                    "name": "string",
+                    "description": "string",
+                    "model": "string",
+                    "owner": "string",
+                    "status": "string",
+                    "health_level": "number",
+                    "__v": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/assets/show/{id}": {
+      "get": {
+        "tags": [
+          "Asset"
+        ],
+        "summary": "Show a asset",
+        "description": "Show a asset",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "_id": "string",
+                    "image": "string",
+                    "name": "string",
+                    "description": "string",
+                    "model": "string",
+                    "owner": "string",
+                    "status": "string",
+                    "health_level": "number",
+                    "__v": 0
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/assets/new": {
+      "post": {
+        "tags": [
+          "Asset"
+        ],
+        "summary": "Register a new asset",
+        "description": "Register a new asset",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "model": {
+                    "type": "string"
+                  },
+                  "owner": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "health_level": {
+                    "type": "number"
+                  }
+                },
+                "example": {
+                  "image": "trator.png",
+                  "name": "Trator",
+                  "description": "Trator tratorto",
+                  "model": "bic",
+                  "owner": "Rodrigo",
+                  "status": "running",
+                  "health_level": 80
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Deleted"
+          },
+          "400": {
+            "description": "Delete inválido"
+          },
+          "404": {
+            "description": "Asset not exists"
+          }
+        }
+      }
+    },
+    "/assets/update/{id}": {
+      "put": {
+        "tags": [
+          "Asset"
+        ],
+        "summary": "Register a new asset",
+        "description": "Register a new asset",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "image": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "model": {
+                    "type": "string"
+                  },
+                  "owner": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "health_level": {
+                    "type": "number"
+                  }
+                },
+                "example": {
+                  "name": "Trator",
+                  "description": "Trator tratorto",
+                  "model": "bic",
+                  "owner": "Rodrigo",
+                  "status": "running",
+                  "health_level": 80
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Máquina atualizada!"
+          },
+          "400": {
+            "description": "Update inválido"
+          },
+          "404": {
+            "description": "Máquina não existe!"
+          }
+        }
+      }
+    },
+    "/assets/remove/{id}": {
+      "delete": {
+        "tags": [
+          "Asset"
+        ],
+        "summary": "Register a new asset",
+        "description": "Register a new asset",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deleted"
+          },
+          "400": {
+            "description": "Asset not exists"
+          }
+        }
+      }
+    }
+  }
+}
