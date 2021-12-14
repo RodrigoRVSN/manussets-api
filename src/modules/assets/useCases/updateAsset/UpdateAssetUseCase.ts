@@ -2,7 +2,6 @@ import { inject, injectable } from "tsyringe";
 
 import { AppError } from "../../../../errors/AppError";
 import { IAssets } from "../../dtos/IAssets";
-import Asset from "../../entities/Asset";
 import { IAssetsRepository } from "../../repositories/IAssetsRepository";
 
 @injectable()
@@ -19,7 +18,7 @@ class UpdateAssetUseCase {
       throw new AppError("Máquina não existe!", 400);
     }
 
-    await Asset.findByIdAndUpdate(id, data);
+    await this.assetsRepository.updateOne(id, data);
   }
 }
 

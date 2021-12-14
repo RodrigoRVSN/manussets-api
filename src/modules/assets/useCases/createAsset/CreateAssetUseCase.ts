@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
+import { splitToDeleteS3Object } from "../../../../config/upload";
 import { AppError } from "../../../../errors/AppError";
 import { IAssets } from "../../dtos/IAssets";
 import { IAssetsRepository } from "../../repositories/IAssetsRepository";
@@ -17,6 +18,7 @@ class CreateAssetUseCase {
     );
 
     if (assetAlreadyExists) {
+      splitToDeleteS3Object(assetAlreadyExists.image);
       throw new AppError("Máquina já existe!", 400);
     }
 

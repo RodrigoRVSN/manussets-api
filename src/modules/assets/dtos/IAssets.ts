@@ -1,4 +1,5 @@
 export interface IAssets {
+  id?: string;
   image?: string;
   name: string;
   description: string;

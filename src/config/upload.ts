@@ -19,6 +19,12 @@ async function deleteFromS3(key: string) {
     .promise();
 }
 
+function splitToDeleteS3Object(image_url: string) {
+  const bucketSplitted = image_url.split("/");
+  const keyOfBucket = bucketSplitted[bucketSplitted.length - 1];
+  deleteFromS3(keyOfBucket);
+}
+
 const upload = multer({
   storage: multerS3({
     s3,
@@ -34,4 +40,4 @@ const upload = multer({
   }),
 });
 
-export { upload, deleteFromS3 };
+export { upload, deleteFromS3, splitToDeleteS3Object };

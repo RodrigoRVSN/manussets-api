@@ -8,26 +8,8 @@ class AssetsRepository implements IAssetsRepository {
     this.repository = Asset;
   }
 
-  async create({
-    image,
-    name,
-    description,
-    model,
-    owner,
-    status,
-    health_level,
-  }: IAssets) {
-    const asset = {
-      image,
-      name,
-      description,
-      model,
-      owner,
-      status,
-      health_level,
-    };
-
-    await this.repository.create(asset);
+  async create(data: IAssets) {
+    await this.repository.create(data);
   }
 
   async findById(asset_id: string): Promise<IAssets | undefined> {
@@ -35,6 +17,14 @@ class AssetsRepository implements IAssetsRepository {
       asset_id,
     )) as unknown as IAssets;
     return asset;
+  }
+
+  async deleteOne(asset_id: string): Promise<void> {
+    await this.repository.deleteOne({ _id: asset_id });
+  }
+
+  async updateOne(asset_id: string, data: IAssets): Promise<void> {
+    await this.repository.findByIdAndUpdate(asset_id, data);
   }
 
   async findByName(name: string): Promise<IAssets | undefined> {
